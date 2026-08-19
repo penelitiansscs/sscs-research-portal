@@ -1,0 +1,8 @@
+# IDE and internal files
+.impeccable/
+.impeccable_skill/
+ref_backup/
+
+# OS generated files
+.DS_Store
+Thumbs.db
