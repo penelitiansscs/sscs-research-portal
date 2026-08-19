@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pratinjau Dokumen | SSCS</title>
+  <meta name="description" content="Pratinjau dokumen riset Smart Stunting Care System">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    /* Styling khusus iframe agar responsif dan bersih */
+    .viewer-container {
+      position: relative;
+      width: 100%;
+      height: 75vh; /* Menyesuaikan tinggi viewport */
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-subtle);
+      background: var(--surface-bg);
+      overflow: hidden;
+      box-shadow: 0 4px 12px hsla(207, 25%, 16%, 0.05);
+    }
+    .viewer-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+    
+    /* Override ukuran kolom utama agar dokumen cukup lebar untuk dibaca */
+    .main--viewer {
+      grid-template-columns: 1fr;
+      max-width: 960px; /* Lebih lebar dari tahap 1 & 2 agar PDF mudah dibaca */
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Menggunakan struktur header persis seperti tahap_1 dan tahap_2 -->
+  <header class="header">
+    <nav>
+      <a href="javascript:history.back()" class="back-link" aria-label="Kembali ke Halaman Sebelumnya">
+        <span data-icon="arrowLeft" aria-hidden="true"></span> Kembali
+      </a>
+    </nav>
+    <div class="header-logo">
+      <a href="index.html" aria-label="Kembali ke Beranda" style="display:inline-block; transition: transform 0.2s ease;"><img src="assets/img/logo 2.jpeg" alt="Logo Smart Stunting Care System" width="64" height="64"></a>
+    </div>
+    <h1 id="docTitle">Memuat Dokumen...</h1>
+    <p class="tagline">Smart Stunting Care System</p>
+  </header>
+
+  <!-- Menggunakan struktur main dan column persis seperti tahap_1 dan tahap_2 -->
+  <main class="main main--viewer">
+    <div class="column">
+      
+      <h2 class="section-title">
+        <span class="badge"><span data-icon="documentText"></span> Lampiran Riset</span>
+      </h2>
+      
+      <!-- Bagian list menu di tahap 1/2 diganti jadi iframe -->
+      <div class="viewer-container">
+        <iframe id="docFrame" src="" allow="autoplay" title="Pratinjau Dokumen"></iframe>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="footer">&copy; 2026 <strong>SSCS</strong> - Smart Stunting Care System</footer>
+
+  <script src="assets/js/icons.js"></script>
+  <script>
+    // Ambil parameter dari URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const driveId = urlParams.get('id');
+    const docTitle = urlParams.get('title');
+    const type = urlParams.get('type'); // 'folder' atau default (file)
+
+    // Tulis judul di header (sama seperti format Tahap 1/2)
+    if (docTitle) {
+      document.getElementById('docTitle').textContent = docTitle;
+      document.title = docTitle + " | SSCS";
+    } else {
+      document.getElementById('docTitle').textContent = "Pratinjau Dokumen";
+    }
+
+    // Suntik URL Iframe
+    const frame = document.getElementById('docFrame');
+    if (driveId) {
+      if (type === 'folder') {
+        // Mode Folder Google Drive
+        frame.src = `https://drive.google.com/embeddedfolderview?id=${driveId}#list`;
+      } else {
+        // Mode File Tunggal Google Drive (PDF/Doc)
+        frame.src = `https://drive.google.com/file/d/${driveId}/preview`;
+      }
+    } else {
+      frame.src = 'about:blank';
+      document.getElementById('docTitle').textContent = "Error: ID Dokumen tidak ditemukan";
+    }
+  </script>
+</body>
+</html>
