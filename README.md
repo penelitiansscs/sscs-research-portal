@@ -11,4 +11,4 @@ This GitHub organization serves as the central hub and primary repository for th
 This specific repository contains the source code for the **SSCS Research Portal**. The portal acts as a centralized, static web interface designed to dynamically access academic documents, system evaluation metrics, and project progression reports.
 
 Access the live research portal here:  
-**[Open SSCS Research Portal](https://penelitiansscs.github.io/penelitiansscs/)**
+**[Open SSCS Research Portal](https://penelitiansscs.github.io/sscs-research-portal/)**
