@@ -5,12 +5,13 @@
 :root {
   /* Brand (STRICTLY ONE ACCENT COLOR) */
   --brand: hsl(190, 100%, 42%);
-  --brand-dark: hsl(190, 100%, 34%);
+  --brand-dark: hsl(192, 100%, 25%); /* WCAG AA > 5:1 against white */
+  --brand-text: hsl(192, 100%, 25%); /* High contrast text token */
 
   /* Neutrals (Strict Scale) */
   --neutral-900: hsl(207, 25%, 16%); /* Charcoal Text */
   --neutral-700: hsl(210, 12%, 35%); /* Secondary Text */
-  --neutral-500: hsl(210, 14%, 45%); /* WCAG AA > 4.5:1 against white */
+  --neutral-500: hsl(210, 14%, 41%); /* WCAG AA > 4.5:1 against surface-bg */
   --neutral-300: hsl(210, 14%, 80%); /* Borders hover */
   --neutral-200: hsl(214, 13%, 91%); /* Borders normal */
   --neutral-100: hsl(216, 16%, 95%); /* Muted background */
@@ -67,6 +68,21 @@ body {
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body {
+    animation: none;
+    opacity: 1;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }
 
@@ -258,10 +274,9 @@ body {
 }
 
 .badge {
-  font-size: 0.7rem;
+  font-size: 0.72rem;
   font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.05em;
   display: inline-flex;
   align-items: center;
   gap: 8px;

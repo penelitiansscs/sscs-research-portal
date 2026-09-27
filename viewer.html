@@ -56,11 +56,31 @@
         cursor: pointer;
       }
       .file-simple-list a:hover {
-        color: var(--brand);
+        color: var(--brand-dark);
       }
       .file-simple-list a.is-active {
         font-weight: 700;
         color: var(--brand-dark);
+      }
+
+      .preview-status-header {
+        display: flex;
+        align-items: center;
+        padding-bottom: 0.25rem;
+      }
+      .preview-badge {
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        color: var(--text-primary);
+      }
+      .preview-badge svg {
+        width: 15px;
+        height: 15px;
+        color: var(--text-secondary);
       }
 
       .viewer-toolbar {
@@ -144,13 +164,12 @@
           id="previewToolbar"
           style="margin-top: 1rem"
         >
-          <h2 class="section-title" style="margin: 0; border: none; padding: 0">
-            <span class="badge"
+          <div class="preview-status-header">
+            <span class="preview-badge"
               ><span data-icon="documentText"></span> Pratinjau:
               <span
                 id="activeFileName"
                 style="
-                  text-transform: none;
                   font-weight: 600;
                   color: var(--text-primary);
                   margin-left: 4px;
@@ -158,7 +177,7 @@
                 >-</span
               ></span
             >
-          </h2>
+          </div>
         </div>
 
         <!-- Container Tampilan -->
@@ -187,7 +206,7 @@
           >
             <img
               id="docImage"
-              src=""
+              src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E"
               alt="Pratinjau Gambar"
               style="
                 max-width: 100%;
@@ -251,9 +270,9 @@
               download
               style="
                 margin-top: 0.5rem;
-                background: var(--brand);
+                background: var(--brand-dark);
                 color: white;
-                border-color: var(--brand);
+                border-color: var(--brand-dark);
               "
             >
               <span data-icon="documentText"></span> Unduh Berkas
