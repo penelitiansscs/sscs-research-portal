@@ -1,193 +1,283 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SSCS - Smart Stunting Care System</title>
-  <meta name="description" content="Portal penelitian Smart Stunting Care System - Deteksi dan monitoring stunting berbasis AI">
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/style.css">
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SSCS - Smart Stunting Care System</title>
+    <meta
+      name="description"
+      content="Portal penelitian Smart Stunting Care System - Deteksi dan monitoring stunting berbasis AI"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/css/style.css" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="header-logo">
+        <a
+          href="index.html"
+          aria-label="Kembali ke Beranda"
+          style="display: inline-block; transition: transform 0.2s ease"
+          ><img
+            src="assets/img/logo 2.jpeg"
+            alt="Logo Smart Stunting Care System"
+            width="64"
+            height="64"
+        /></a>
+      </div>
+      <h1>Smart Stunting Care System</h1>
+      <p class="tagline">Sistem Deteksi dan Monitoring Stunting Berbasis AI</p>
+    </header>
 
-  <header class="header">
-    <div class="header-logo">
-      <a href="index.html" aria-label="Kembali ke Beranda" style="display:inline-block; transition: transform 0.2s ease;"><img src="assets/img/logo 2.jpeg" alt="Logo Smart Stunting Care System" width="64" height="64"></a>
-    </div>
-    <h1>Smart Stunting Care System</h1>
-    <p class="tagline">Sistem Deteksi dan Monitoring Stunting Berbasis AI</p>
-  </header>
+    <main class="main">
+      <!-- KOLOM KIRI -->
+      <div class="column">
+        <!-- JADWAL PENELITIAN — timeline, bukan card grid -->
+        <h2 class="section-title">
+          <span class="badge"
+            ><span data-icon="calendar"></span> Jadwal Penelitian</span
+          >
+        </h2>
+        <div class="links">
+          <a
+            href="tahap_1.html"
+            class="link-item"
+            style="animation-delay: 0.05s"
+          >
+            <div class="link-icon" data-icon="calendar"></div>
+            <div class="link-info">
+              <h3>Tahun ke-1</h3>
+              <p>Persiapan, pelatihan, evaluasi AI</p>
+            </div>
+            <span class="link-arrow" data-icon="chevronRight"></span>
+          </a>
+          <a
+            href="tahap_2.html"
+            class="link-item"
+            style="animation-delay: 0.05s"
+          >
+            <div class="link-icon" data-icon="calendarCheck"></div>
+            <div class="link-info">
+              <h3>Tahun ke-2</h3>
+              <p>Validasi, prototype, feasibility</p>
+            </div>
+            <span class="link-arrow" data-icon="chevronRight"></span>
+          </a>
+        </div>
 
-  <main class="main">
-    <!-- KOLOM KIRI -->
-    <div class="column">
-
-      <!-- JADWAL PENELITIAN — timeline, bukan card grid -->
-      <h2 class="section-title">
-        <span class="badge"><span data-icon="calendar"></span> Jadwal Penelitian</span>
-      </h2>
-      <div class="links">
-        <a href="tahap_1.html" class="link-item" style="animation-delay:.05s">
-          <div class="link-icon" data-icon="calendar"></div>
-          <div class="link-info">
-            <h3>Tahun ke-1</h3>
-            <p>Persiapan, pelatihan, evaluasi AI</p>
-          </div>
-          <span class="link-arrow" data-icon="chevronRight"></span>
-        </a>
-        <a href="tahap_2.html" class="link-item" style="animation-delay:.05s">
-          <div class="link-icon" data-icon="calendarCheck"></div>
-          <div class="link-info">
-            <h3>Tahun ke-2</h3>
-            <p>Validasi, prototype, feasibility</p>
-          </div>
-          <span class="link-arrow" data-icon="chevronRight"></span>
-        </a>
+        <!-- KERANGKA PENELITIAN -->
+        <h2 class="section-title section-gap" style="animation-delay: 0.15s">
+          <span class="badge"
+            ><span data-icon="cpuChip"></span> Kerangka Penelitian</span
+          >
+        </h2>
+        <div class="links">
+          <a
+            href="viewer.html?title=Data%20Collecting"
+            class="link-item"
+            style="animation-delay: 0.15s"
+          >
+            <div class="link-icon" data-icon="database"></div>
+            <div class="link-info">
+              <h3>Data Collecting</h3>
+              <p>
+                Pengumpulan data antropometri dan klinis anak untuk analisis
+                stunting
+              </p>
+            </div>
+            <span class="link-arrow" data-icon="chevronRight"></span>
+          </a>
+          <a
+            href="viewer.html?title=Preprocessing"
+            class="link-item"
+            style="animation-delay: 0.15s"
+          >
+            <div class="link-icon" data-icon="adjustments"></div>
+            <div class="link-info">
+              <h3>Preprocessing</h3>
+              <p>Pembersihan data, normalisasi, dan transformasi fitur</p>
+            </div>
+            <span class="link-arrow" data-icon="chevronRight"></span>
+          </a>
+          <a
+            href="viewer.html?title=Baseline%20AI%20Algorithm"
+            class="link-item"
+            style="animation-delay: 0.15s"
+          >
+            <div class="link-icon" data-icon="cpuChip"></div>
+            <div class="link-info">
+              <h3>Baseline AI Algorithm</h3>
+              <p>Implementasi algoritma dasar sebagai benchmark performa</p>
+            </div>
+            <span class="link-arrow" data-icon="chevronRight"></span>
+          </a>
+          <a
+            href="viewer.html?title=Proposed%20AI%20Algorithm"
+            class="link-item is-crucial"
+            style="animation-delay: 0.15s"
+          >
+            <div class="link-icon" data-icon="lightBulb"></div>
+            <div class="link-info">
+              <h3>Proposed AI Algorithm</h3>
+              <p>
+                Implementasi model kecerdasan buatan untuk deteksi dan analisis
+                stunting
+              </p>
+            </div>
+            <span class="link-arrow" data-icon="chevronRight"></span>
+          </a>
+          <a
+            href="viewer.html?title=Analysis"
+            class="link-item"
+            style="animation-delay: 0.15s"
+          >
+            <div class="link-icon" data-icon="chartBar"></div>
+            <div class="link-info">
+              <h3>Analysis</h3>
+              <p>Evaluasi performa model dan analisis hasil luaran sistem</p>
+            </div>
+            <span class="link-arrow" data-icon="chevronRight"></span>
+          </a>
+          <a
+            href="viewer.html?title=Deployment"
+            class="link-item"
+            style="animation-delay: 0.15s"
+          >
+            <div class="link-icon" data-icon="rocket"></div>
+            <div class="link-info">
+              <h3>Deployment</h3>
+              <p>
+                Implementasi sistem ke lingkungan produksi untuk penggunaan
+                lapangan
+              </p>
+            </div>
+            <span class="link-arrow" data-icon="chevronRight"></span>
+          </a>
+        </div>
       </div>
 
-      <!-- KERANGKA PENELITIAN -->
-      <h2 class="section-title section-gap" style="animation-delay:.15s">
-        <span class="badge"><span data-icon="cpuChip"></span> Kerangka Penelitian</span>
-      </h2>
-      <div class="links">
-        <a href="viewer.html?title=Data%20Collecting&id=1uLfo4UnJe5ql9ZwrVCq7olqw_-IbYiym" class="link-item"  style="animation-delay:.15s">
-          <div class="link-icon" data-icon="database"></div>
-          <div class="link-info">
-            <h3>Data Collecting</h3>
-            <p>Pengumpulan data antropometri dan klinis anak untuk analisis stunting</p>
-          </div>
-          <span class="link-arrow" data-icon="chevronRight"></span>
-        </a>
-        <a href="viewer.html?title=Preprocessing&id=1uLfo4UnJe5ql9ZwrVCq7olqw_-IbYiym" class="link-item"  style="animation-delay:.15s">
-          <div class="link-icon" data-icon="adjustments"></div>
-          <div class="link-info">
-            <h3>Preprocessing</h3>
-            <p>Pembersihan data, normalisasi, dan transformasi fitur</p>
-          </div>
-          <span class="link-arrow" data-icon="chevronRight"></span>
-        </a>
-        <a href="viewer.html?title=Baseline%20AI%20Algorithm&id=1uLfo4UnJe5ql9ZwrVCq7olqw_-IbYiym" class="link-item"  style="animation-delay:.15s">
-          <div class="link-icon" data-icon="cpuChip"></div>
-          <div class="link-info">
-            <h3>Baseline AI Algorithm</h3>
-            <p>Implementasi algoritma dasar sebagai benchmark performa</p>
-          </div>
-          <span class="link-arrow" data-icon="chevronRight"></span>
-        </a>
-        <a href="viewer.html?title=Proposed AI Algorithm&id=1uLfo4UnJe5ql9ZwrVCq7olqw_-IbYiym" class="link-item is-crucial" style="animation-delay:.15s">
-          <div class="link-icon" data-icon="lightBulb"></div>
-          <div class="link-info">
-            <h3>Proposed AI Algorithm</h3>
-            <p>Implementasi model kecerdasan buatan untuk deteksi dan analisis stunting</p>
-          </div>
-          <span class="link-arrow" data-icon="chevronRight"></span>
-        </a>
-        <a href="viewer.html?title=Analysis&id=1uLfo4UnJe5ql9ZwrVCq7olqw_-IbYiym" class="link-item"  style="animation-delay:.15s">
-          <div class="link-icon" data-icon="chartBar"></div>
-          <div class="link-info">
-            <h3>Analysis</h3>
-            <p>Evaluasi performa model dan analisis hasil luaran sistem</p>
-          </div>
-          <span class="link-arrow" data-icon="chevronRight"></span>
-        </a>
-        <a href="viewer.html?title=Deployment&id=1uLfo4UnJe5ql9ZwrVCq7olqw_-IbYiym" class="link-item"  style="animation-delay:.15s">
-          <div class="link-icon" data-icon="rocket"></div>
-          <div class="link-info">
-            <h3>Deployment</h3>
-            <p>Implementasi sistem ke lingkungan produksi untuk penggunaan lapangan</p>
-          </div>
-          <span class="link-arrow" data-icon="chevronRight"></span>
-        </a>
+      <!-- KOLOM KANAN -->
+      <div class="column">
+        <!-- TAHUN PERTAMA -->
+        <h2 class="section-title">
+          <span class="badge"
+            ><span data-icon="calendar"></span> Tahun Pertama</span
+          >
+        </h2>
+        <div class="links">
+          <a
+            href="viewer.html?folder=prototype"
+            class="link-item"
+            style="animation-delay: 0.1s"
+          >
+            <div class="link-icon" data-icon="cube"></div>
+            <div class="link-info">
+              <h3>Prototype</h3>
+              <p>Pengembangan prototipe awal</p>
+            </div>
+            <span class="link-arrow" data-icon="chevronRight"></span>
+          </a>
+          <a
+            href="viewer.html?folder=haki"
+            class="link-item"
+            style="animation-delay: 0.1s"
+          >
+            <div class="link-icon" data-icon="shieldCheck"></div>
+            <div class="link-info">
+              <h3>Kekayaan Intelektual</h3>
+              <p>Pengajuan paten sederhana</p>
+            </div>
+            <span class="link-arrow" data-icon="chevronRight"></span>
+          </a>
+        </div>
+
+        <!-- TAHUN KEDUA -->
+        <h2 class="section-title section-gap" style="animation-delay: 0.2s">
+          <span class="badge"
+            ><span data-icon="calendarCheck"></span> Tahun Kedua</span
+          >
+        </h2>
+        <div class="links">
+          <a
+            href="viewer.html?title=Prototype%20(Tahun%20ke-2)&subtitle=Milestone%20Tahun%20ke-2%20(2027)&status=Target%20Tahun%20ke-2&desc=Pengembangan%20prototipe%20sistem%20siap%20uji%20merupakan%20target%20pelaksanaan%20Tahun%20ke-2%20(2027)."
+            class="link-item is-crucial"
+            style="animation-delay: 0.2s"
+          >
+            <div class="link-icon" data-icon="cube"></div>
+            <div class="link-info">
+              <h3>Prototype</h3>
+              <p>Pengembangan prototipe sistem yang siap diuji</p>
+            </div>
+            <span class="link-arrow" data-icon="chevronRight"></span>
+          </a>
+          <a
+            href="viewer.html?title=Kekayaan%20Intelektual%20(Tahun%20ke-2)&subtitle=Milestone%20Tahun%20ke-2%20(2027)&status=Target%20Tahun%20ke-2&desc=Pendaftaran%20paten%20atau%20paten%20sederhana%20lanjutan%20merupakan%20target%20pelaksanaan%20Tahun%20ke-2%20(2027)."
+            class="link-item"
+            style="animation-delay: 0.2s"
+          >
+            <div class="link-icon" data-icon="shieldCheck"></div>
+            <div class="link-info">
+              <h3>Kekayaan Intelektual</h3>
+              <p>Pendaftaran paten atau paten sederhana lanjutan</p>
+            </div>
+            <span class="link-arrow" data-icon="chevronRight"></span>
+          </a>
+          <a
+            href="viewer.html?title=Feasibility%20Study&subtitle=Milestone%20Tahun%20ke-2%20(2027)&status=Target%20Tahun%20ke-2&desc=Laporan%20studi%20kelayakan%20teknis%20dan%20implementasi%20sistem%20merupakan%20target%20pelaksanaan%20Tahun%20ke-2%20(2027)."
+            class="link-item"
+            style="animation-delay: 0.2s"
+          >
+            <div class="link-icon" data-icon="documentText"></div>
+            <div class="link-info">
+              <h3>Feasibility Study</h3>
+              <p>Laporan studi kelayakan teknis dan implementasi sistem</p>
+            </div>
+            <span class="link-arrow" data-icon="chevronRight"></span>
+          </a>
+        </div>
+
+        <!-- LAPORAN -->
+        <h2 class="section-title section-gap" style="animation-delay: 0.3s">
+          <span class="badge"
+            ><span data-icon="clipboardDoc"></span> Laporan</span
+          >
+        </h2>
+        <div class="links">
+          <a
+            href="viewer.html?folder=laporan"
+            class="link-item"
+            style="animation-delay: 0.3s"
+          >
+            <div class="link-icon" data-icon="chartBar"></div>
+            <div class="link-info">
+              <h3>Laporan Kemajuan</h3>
+              <p>Laporan progres dan capaian penelitian</p>
+            </div>
+            <span class="link-arrow" data-icon="chevronRight"></span>
+          </a>
+          <a
+            href="viewer.html?title=Laporan%20Akhir&subtitle=Pelaporan%20Penelitian%20Terapan%20BIMA&status=Dalam%20Proses%20Penyelesaian&desc=Laporan%20Akhir%20(100%25)%20saat%20ini%20masih%20dalam%20tahap%20penyelesaian%20mengikuti%20jadwal%20penelitian."
+            class="link-item"
+            style="animation-delay: 0.3s"
+          >
+            <div class="link-icon" data-icon="flag"></div>
+            <div class="link-info">
+              <h3>Laporan Akhir</h3>
+              <p>Laporan akhir hasil penelitian</p>
+            </div>
+            <span class="link-arrow" data-icon="chevronRight"></span>
+          </a>
+        </div>
       </div>
+    </main>
 
-    </div>
+    <footer class="footer">
+      &copy; 2026 <strong>SSCS</strong> - Smart Stunting Care System
+    </footer>
 
-    <!-- KOLOM KANAN -->
-    <div class="column">
-
-      <!-- TAHUN PERTAMA -->
-      <h2 class="section-title">
-        <span class="badge"><span data-icon="calendar"></span> Tahun Pertama</span>
-      </h2>
-      <div class="links">
-        <a href="viewer.html?title=Prototype&id=1uLfo4UnJe5ql9ZwrVCq7olqw_-IbYiym" class="link-item" style="animation-delay:.1s">
-          <div class="link-icon" data-icon="cube"></div>
-          <div class="link-info">
-            <h3>Prototype</h3>
-            <p>Pengembangan prototipe awal</p>
-          </div>
-          <span class="link-arrow" data-icon="chevronRight"></span>
-        </a>
-        <a href="viewer.html?title=Kekayaan%20Intelektual&id=1uLfo4UnJe5ql9ZwrVCq7olqw_-IbYiym" class="link-item" style="animation-delay:.1s">
-          <div class="link-icon" data-icon="shieldCheck"></div>
-          <div class="link-info">
-            <h3>Kekayaan Intelektual</h3>
-            <p>Pengajuan paten sederhana</p>
-          </div>
-          <span class="link-arrow" data-icon="chevronRight"></span>
-        </a>
-      </div>
-
-      <!-- TAHUN KEDUA -->
-      <h2 class="section-title section-gap" style="animation-delay:.2s">
-        <span class="badge"><span data-icon="calendarCheck"></span> Tahun Kedua</span>
-      </h2>
-      <div class="links">
-        <a href="viewer.html?title=Prototype&id=1uLfo4UnJe5ql9ZwrVCq7olqw_-IbYiym" class="link-item is-crucial" style="animation-delay:.2s">
-          <div class="link-icon" data-icon="cube"></div>
-          <div class="link-info">
-            <h3>Prototype</h3>
-            <p>Pengembangan prototipe sistem yang siap diuji</p>
-          </div>
-          <span class="link-arrow" data-icon="chevronRight"></span>
-        </a>
-        <a href="viewer.html?title=Kekayaan%20Intelektual&id=1uLfo4UnJe5ql9ZwrVCq7olqw_-IbYiym" class="link-item" style="animation-delay:.2s">
-          <div class="link-icon" data-icon="shieldCheck"></div>
-          <div class="link-info">
-            <h3>Kekayaan Intelektual</h3>
-            <p>Pendaftaran paten atau paten sederhana lanjutan</p>
-          </div>
-          <span class="link-arrow" data-icon="chevronRight"></span>
-        </a>
-        <a href="viewer.html?title=Feasibility%20Study&id=1uLfo4UnJe5ql9ZwrVCq7olqw_-IbYiym" class="link-item" style="animation-delay:.2s">
-          <div class="link-icon" data-icon="documentText"></div>
-          <div class="link-info">
-            <h3>Feasibility Study</h3>
-            <p>Laporan studi kelayakan teknis dan implementasi sistem</p>
-          </div>
-          <span class="link-arrow" data-icon="chevronRight"></span>
-        </a>
-      </div>
-
-      <!-- LAPORAN -->
-      <h2 class="section-title section-gap" style="animation-delay:.3s">
-        <span class="badge"><span data-icon="clipboardDoc"></span> Laporan</span>
-      </h2>
-      <div class="links">
-        <a href="viewer.html?title=Laporan%20Kemajuan&id=1uLfo4UnJe5ql9ZwrVCq7olqw_-IbYiym" class="link-item" style="animation-delay:.3s">
-          <div class="link-icon" data-icon="chartBar"></div>
-          <div class="link-info">
-            <h3>Laporan Kemajuan</h3>
-            <p>Laporan progres dan capaian penelitian</p>
-          </div>
-          <span class="link-arrow" data-icon="chevronRight"></span>
-        </a>
-        <a href="viewer.html?title=Laporan%20Akhir&id=1uLfo4UnJe5ql9ZwrVCq7olqw_-IbYiym" class="link-item" style="animation-delay:.3s">
-          <div class="link-icon" data-icon="flag"></div>
-          <div class="link-info">
-            <h3>Laporan Akhir</h3>
-            <p>Laporan akhir hasil penelitian</p>
-          </div>
-          <span class="link-arrow" data-icon="chevronRight"></span>
-        </a>
-      </div>
-
-
-    </div>
-  </main>
-
-  <footer class="footer">&copy; 2026 <strong>SSCS</strong> - Smart Stunting Care System</footer>
-
-  <script src="assets/js/icons.js"></script>
-</body>
+    <script src="assets/js/icons.js"></script>
+  </body>
 </html>

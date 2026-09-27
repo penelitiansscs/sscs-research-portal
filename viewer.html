@@ -1,104 +1,651 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pratinjau Dokumen | SSCS</title>
-  <meta name="description" content="Pratinjau dokumen riset Smart Stunting Care System">
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/style.css">
-  <style>
-    /* Styling khusus iframe agar responsif dan bersih */
-    .viewer-container {
-      position: relative;
-      width: 100%;
-      height: 75vh; /* Menyesuaikan tinggi viewport */
-      border-radius: var(--radius-sm);
-      border: 1px solid var(--border-subtle);
-      background: var(--surface-bg);
-      overflow: hidden;
-      box-shadow: 0 4px 12px hsla(207, 25%, 16%, 0.05);
-    }
-    .viewer-container iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border: none;
-    }
-    
-    /* Override ukuran kolom utama agar dokumen cukup lebar untuk dibaca */
-    .main--viewer {
-      grid-template-columns: 1fr;
-      max-width: 960px; /* Lebih lebar dari tahap 1 & 2 agar PDF mudah dibaca */
-    }
-  </style>
-</head>
-<body>
-
-  <!-- Menggunakan struktur header persis seperti tahap_1 dan tahap_2 -->
-  <header class="header">
-    <nav>
-      <a href="javascript:history.back()" class="back-link" aria-label="Kembali ke Halaman Sebelumnya">
-        <span data-icon="arrowLeft" aria-hidden="true"></span> Kembali
-      </a>
-    </nav>
-    <div class="header-logo">
-      <a href="index.html" aria-label="Kembali ke Beranda" style="display:inline-block; transition: transform 0.2s ease;"><img src="assets/img/logo 2.jpeg" alt="Logo Smart Stunting Care System" width="64" height="64"></a>
-    </div>
-    <h1 id="docTitle">Memuat Dokumen...</h1>
-    <p class="tagline">Smart Stunting Care System</p>
-  </header>
-
-  <!-- Menggunakan struktur main dan column persis seperti tahap_1 dan tahap_2 -->
-  <main class="main main--viewer">
-    <div class="column">
-      
-      <h2 class="section-title">
-        <span class="badge"><span data-icon="documentText"></span> Lampiran Riset</span>
-      </h2>
-      
-      <!-- Bagian list menu di tahap 1/2 diganti jadi iframe -->
-      <div class="viewer-container">
-        <iframe id="docFrame" src="" allow="autoplay" title="Pratinjau Dokumen"></iframe>
-      </div>
-
-    </div>
-  </main>
-
-  <footer class="footer">&copy; 2026 <strong>SSCS</strong> - Smart Stunting Care System</footer>
-
-  <script src="assets/js/icons.js"></script>
-  <script>
-    // Ambil parameter dari URL
-    const urlParams = new URLSearchParams(window.location.search);
-    const driveId = urlParams.get('id');
-    const docTitle = urlParams.get('title');
-    const type = urlParams.get('type'); // 'folder' atau default (file)
-
-    // Tulis judul di header (sama seperti format Tahap 1/2)
-    if (docTitle) {
-      document.getElementById('docTitle').textContent = docTitle;
-      document.title = docTitle + " | SSCS";
-    } else {
-      document.getElementById('docTitle').textContent = "Pratinjau Dokumen";
-    }
-
-    // Suntik URL Iframe
-    const frame = document.getElementById('docFrame');
-    if (driveId) {
-      if (type === 'folder') {
-        // Mode Folder Google Drive
-        frame.src = `https://drive.google.com/embeddedfolderview?id=${driveId}#list`;
-      } else {
-        // Mode File Tunggal Google Drive (PDF/Doc)
-        frame.src = `https://drive.google.com/file/d/${driveId}/preview`;
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pratinjau Dokumen | SSCS</title>
+    <meta
+      name="description"
+      content="Pratinjau dokumen riset Smart Stunting Care System"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <style>
+      /* Styling khusus iframe agar responsif dan bersih */
+      .viewer-container {
+        position: relative;
+        width: 100%;
+        height: 75vh; /* Menyesuaikan tinggi viewport */
+        border-radius: var(--radius-sm);
+        border: 1px solid var(--border-subtle);
+        background: var(--surface-bg);
+        overflow: hidden;
+        box-shadow: 0 4px 12px hsla(207, 25%, 16%, 0.05);
       }
-    } else {
-      frame.src = 'about:blank';
-      document.getElementById('docTitle').textContent = "Error: ID Dokumen tidak ditemukan";
-    }
-  </script>
-</body>
+      .viewer-container iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: none;
+      }
+
+      /* Override ukuran kolom utama agar dokumen cukup lebar untuk dibaca */
+      .main--viewer {
+        grid-template-columns: 1fr;
+        max-width: 960px; /* Lebih lebar dari tahap 1 & 2 agar PDF mudah dibaca */
+      }
+
+      /* Daftar Berkas (List Sederhana) */
+      .file-simple-list {
+        margin: 0.5rem 0 1.5rem 1.5rem;
+        line-height: 1.8;
+      }
+      .file-simple-list li {
+        font-size: 0.9rem;
+        color: var(--text-secondary);
+        margin-bottom: 0.25rem;
+      }
+      .file-simple-list a {
+        color: var(--text-primary);
+        text-decoration: underline;
+        cursor: pointer;
+      }
+      .file-simple-list a:hover {
+        color: var(--brand);
+      }
+      .file-simple-list a.is-active {
+        font-weight: 700;
+        color: var(--brand-dark);
+      }
+
+      .viewer-toolbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 0.75rem;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+      .viewer-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: var(--text-primary);
+        text-decoration: none;
+        padding: 0.45rem 0.85rem;
+        background: var(--surface-card);
+        border: 1px solid var(--border-subtle);
+        border-radius: var(--radius-sm);
+        transition: all 0.2s var(--ease-out);
+      }
+      .viewer-btn:hover {
+        background: var(--neutral-100);
+        border-color: var(--neutral-300);
+        color: var(--brand);
+      }
+      .viewer-btn svg {
+        width: 15px;
+        height: 15px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Menggunakan struktur header persis seperti tahap_1 dan tahap_2 -->
+    <header class="header">
+      <nav>
+        <a
+          href="javascript:history.back()"
+          class="back-link"
+          aria-label="Kembali ke Halaman Sebelumnya"
+        >
+          <span data-icon="arrowLeft" aria-hidden="true"></span> Kembali
+        </a>
+      </nav>
+      <div class="header-logo">
+        <a
+          href="index.html"
+          aria-label="Kembali ke Beranda"
+          style="display: inline-block; transition: transform 0.2s ease"
+          ><img
+            src="assets/img/logo 2.jpeg"
+            alt="Logo Smart Stunting Care System"
+            width="64"
+            height="64"
+        /></a>
+      </div>
+      <h1 id="docTitle">Memuat Dokumen...</h1>
+      <p class="tagline" id="docSubtitle">Smart Stunting Care System</p>
+    </header>
+
+    <!-- Menggunakan struktur main dan column persis seperti tahap_1 dan tahap_2 -->
+    <main class="main main--viewer">
+      <div class="column">
+        <!-- Daftar Berkas Lampiran (List Sederhana) -->
+        <div id="fileListWrapper" style="display: none; margin-bottom: 1.5rem">
+          <h2 class="section-title" style="margin-bottom: 0.5rem">
+            <span class="badge"
+              ><span data-icon="clipboardDoc"></span> Pilih Berkas
+              Lampiran:</span
+            >
+          </h2>
+          <ol id="fileList" class="file-simple-list"></ol>
+        </div>
+
+        <!-- Area Toolbar & Pratinjau Dokumen -->
+        <div
+          class="viewer-toolbar"
+          id="previewToolbar"
+          style="margin-top: 1rem"
+        >
+          <h2 class="section-title" style="margin: 0; border: none; padding: 0">
+            <span class="badge"
+              ><span data-icon="documentText"></span> Pratinjau:
+              <span
+                id="activeFileName"
+                style="
+                  text-transform: none;
+                  font-weight: 600;
+                  color: var(--text-primary);
+                  margin-left: 4px;
+                "
+                >-</span
+              ></span
+            >
+          </h2>
+        </div>
+
+        <!-- Container Tampilan -->
+        <div class="viewer-container" id="viewerContainer">
+          <!-- PDF / URL Iframe -->
+          <iframe
+            id="docFrame"
+            src=""
+            allow="autoplay"
+            title="Pratinjau Dokumen"
+          ></iframe>
+
+          <!-- Image Viewer -->
+          <div
+            id="imageViewer"
+            style="
+              display: none;
+              width: 100%;
+              height: 100%;
+              align-items: center;
+              justify-content: center;
+              background: #0f172a;
+              padding: 1rem;
+              overflow: auto;
+            "
+          >
+            <img
+              id="docImage"
+              src=""
+              alt="Pratinjau Gambar"
+              style="
+                max-width: 100%;
+                max-height: 100%;
+                object-fit: contain;
+                border-radius: 4px;
+                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+              "
+            />
+          </div>
+
+          <!-- Office Download Card -->
+          <div
+            id="downloadCard"
+            style="
+              display: none;
+              width: 100%;
+              height: 100%;
+              align-items: center;
+              justify-content: center;
+              flex-direction: column;
+              gap: 1rem;
+              padding: 2rem;
+              text-align: center;
+            "
+          >
+            <div
+              style="
+                width: 52px;
+                height: 52px;
+                border-radius: 50%;
+                background: var(--neutral-100);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+              "
+              data-icon="documentText"
+            ></div>
+            <h3
+              id="cardTitle"
+              style="font-size: 1.15rem; color: var(--text-primary)"
+            >
+              Dokumen Office
+            </h3>
+            <p
+              id="cardDesc"
+              style="
+                font-size: 0.85rem;
+                color: var(--text-tertiary);
+                max-width: 420px;
+                line-height: 1.6;
+              "
+            >
+              Berkas format ini dapat diunduh untuk dibuka langsung menggunakan
+              aplikasi pendukung di komputer Anda.
+            </p>
+            <a
+              id="cardDownloadBtn"
+              href="#"
+              class="viewer-btn"
+              download
+              style="
+                margin-top: 0.5rem;
+                background: var(--brand);
+                color: white;
+                border-color: var(--brand);
+              "
+            >
+              <span data-icon="documentText"></span> Unduh Berkas
+            </a>
+          </div>
+
+          <!-- Empty Placeholder -->
+          <div
+            id="emptyPlaceholder"
+            style="
+              display: none;
+              width: 100%;
+              height: 100%;
+              align-items: center;
+              justify-content: center;
+              flex-direction: column;
+              gap: 0.85rem;
+              padding: 2.5rem;
+              text-align: center;
+            "
+          >
+            <div
+              style="
+                width: 56px;
+                height: 56px;
+                border-radius: 50%;
+                background: var(--neutral-100);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: var(--text-tertiary);
+              "
+              data-icon="documentText"
+            ></div>
+            <h3
+              id="emptyTitle"
+              style="
+                font-size: 1.15rem;
+                color: var(--text-primary);
+                font-weight: 700;
+              "
+            >
+              Belum Ada Dokumen
+            </h3>
+            <p
+              id="emptyDesc"
+              style="
+                font-size: 0.88rem;
+                color: var(--text-tertiary);
+                max-width: 420px;
+                line-height: 1.6;
+              "
+            >
+              Dokumen atau berkas untuk modul ini sedang dipersiapkan dan akan
+              segera diperbarui.
+            </p>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="footer">
+      &copy; 2026 <strong>SSCS</strong> - Smart Stunting Care System
+    </footer>
+
+    <script src="assets/js/icons.js"></script>
+    <script>
+      // Database Berkas Lokal per Menu
+      const FOLDER_DATA = {
+        prototype: {
+          title: 'Prototype - Purwarupa SSCS',
+          subtitle:
+            'Laporan Luaran Purwarupa, Naskah Publikasi & Desain Komponen Alat',
+          files: [
+            {
+              name: 'Luaran - Purwarupa (Laporan Utama)',
+              path: 'assets/upload_drive/01_Prototype/Luaran - Purwarupa.pdf',
+              type: 'pdf',
+              badge: 'PDF',
+            },
+            {
+              name: 'Luaran - Artikel Ilmiah',
+              path: 'assets/upload_drive/01_Prototype/Luaran - artikel ilmiah2.pdf',
+              type: 'pdf',
+              badge: 'PDF',
+            },
+            {
+              name: 'Drawing Baby Weighing (Komponen)',
+              path: 'assets/upload_drive/01_Prototype/Drawing Baby Weighing (Component).PNG',
+              type: 'image',
+              badge: 'Gambar',
+            },
+            {
+              name: 'Desain Front View (Tampak Depan)',
+              path: 'assets/upload_drive/01_Prototype/Front View.png',
+              type: 'image',
+              badge: 'Gambar',
+            },
+            {
+              name: 'Desain Back View (Tampak Belakang)',
+              path: 'assets/upload_drive/01_Prototype/Back View.png',
+              type: 'image',
+              badge: 'Gambar',
+            },
+            {
+              name: 'Desain Left View (Tampak Kiri)',
+              path: 'assets/upload_drive/01_Prototype/Left View.png',
+              type: 'image',
+              badge: 'Gambar',
+            },
+            {
+              name: 'Desain Right View (Tampak Kanan)',
+              path: 'assets/upload_drive/01_Prototype/Right View.png',
+              type: 'image',
+              badge: 'Gambar',
+            },
+            {
+              name: 'Foto Fisik Timbangan',
+              path: 'assets/upload_drive/01_Prototype/timbangan.jpeg',
+              type: 'image',
+              badge: 'Foto',
+            },
+            {
+              name: 'Diagram Komponen Hardware',
+              path: 'assets/upload_drive/01_Prototype/tampak komponen.png',
+              type: 'image',
+              badge: 'Diagram',
+            },
+          ],
+        },
+        haki: {
+          title: 'Kekayaan Intelektual (HaKI)',
+          subtitle:
+            'Pengajuan Paten Sederhana & Pendaftaran Merek Dagang SSCS ke DJKI',
+          files: [
+            {
+              name: 'Deskripsi Paten Sederhana (DJKI)',
+              path: 'assets/upload_drive/02_Kekayaan_Intelektual/1 Deskripsi v4.pdf',
+              type: 'pdf',
+              badge: 'Paten',
+            },
+            {
+              name: 'Formulir Permohonan Merek (DID2026071101)',
+              path: 'assets/upload_drive/02_Kekayaan_Intelektual/CetakMerek4-DID2026071101.pdf',
+              type: 'pdf',
+              badge: 'Merek',
+            },
+            {
+              name: 'Kompilasi Submission Merek SSCS',
+              path: 'assets/upload_drive/02_Kekayaan_Intelektual/HKI Merek submission.pdf',
+              type: 'pdf',
+              badge: 'Merek',
+            },
+            {
+              name: 'Berita Resmi Merek (BRM DJKI)',
+              path: 'assets/upload_drive/02_Kekayaan_Intelektual/63d450ed81f6eee828a2ec671cec529d - BRM2.pdf',
+              type: 'pdf',
+              badge: 'DJKI',
+            },
+            {
+              name: 'Status Pelacakan Merek DJKI',
+              path: 'assets/upload_drive/02_Kekayaan_Intelektual/Progress Merek.pdf',
+              type: 'pdf',
+              badge: 'Status',
+            },
+            {
+              name: 'Surat Bantuan Pendaftaran Paten PDPP',
+              path: 'assets/upload_drive/02_Kekayaan_Intelektual/Pemberitahuan-Penerima-Bantuan-Biaya-Pendaftaran-Permohonan-Paten-dan-Pemeriksaan-Substantif-Paten-Hasil-Seleksi-Pelatihan-PDPP-Gelombang-III-Tahun-2025--Wilayah-Surabaya--Tangerang--Sukabumi-dan-Bali.pdf',
+              type: 'pdf',
+              badge: 'PDPP',
+            },
+            {
+              name: 'Template Deskripsi Paten DJKI',
+              path: 'assets/upload_drive/02_Kekayaan_Intelektual/Template Deskripsi PatenDJKI.pdf',
+              type: 'pdf',
+              badge: 'Format',
+            },
+          ],
+        },
+        laporan: {
+          title: 'Laporan Kemajuan',
+          subtitle:
+            'Laporan Kemajuan Penelitian Terapan BIMA & Presentasi Monev 2026',
+          files: [
+            {
+              name: 'Laporan Kemajuan 80% (BIMA Resmi)',
+              path: 'assets/upload_drive/03_Laporan_Kemajuan/Template Laporan Kemajuan 2026 - v3.pdf',
+              type: 'pdf',
+              badge: 'PDF',
+            },
+            {
+              name: 'Slide Presentasi Monev 80% (PPTX)',
+              path: 'assets/upload_drive/03_Laporan_Kemajuan/MONEV 2026 (28-9-2026) v3.pptx',
+              type: 'download',
+              badge: 'PPTX',
+            },
+            {
+              name: 'SPTB Laporan Keuangan',
+              path: 'assets/upload_drive/03_Laporan_Kemajuan/final_SPTBSmartStuntingCareSystem1.pdf',
+              type: 'pdf',
+              badge: 'PDF',
+            },
+            {
+              name: 'Borang Monev Internal LPPM (DOCX)',
+              path: 'assets/upload_drive/03_Laporan_Kemajuan/Borang Penilaian Monitoring dan Evaluasi Internal Penelitian 2026_Candra.docx',
+              type: 'download',
+              badge: 'DOCX',
+            },
+            {
+              name: 'Format Rekap Monev 2026 (XLSX)',
+              path: 'assets/upload_drive/03_Laporan_Kemajuan/Format Rekap Monev Penelitian 2026_ Candra Zonyfar.xlsx',
+              type: 'download',
+              badge: 'XLSX',
+            },
+          ],
+        },
+      };
+
+      // Ambil parameter dari URL
+      const urlParams = new URLSearchParams(window.location.search);
+      const folderKey = urlParams.get('folder');
+      const directFile = urlParams.get('file');
+      const driveId = urlParams.get('id');
+      const customTitle = urlParams.get('title');
+      const type = urlParams.get('type');
+
+      const frame = document.getElementById('docFrame');
+      const imageViewer = document.getElementById('imageViewer');
+      const docImage = document.getElementById('docImage');
+      const downloadCard = document.getElementById('downloadCard');
+      const cardTitle = document.getElementById('cardTitle');
+      const cardDownloadBtn = document.getElementById('cardDownloadBtn');
+      const emptyPlaceholder = document.getElementById('emptyPlaceholder');
+      const activeFileName = document.getElementById('activeFileName');
+      const fileListWrapper = document.getElementById('fileListWrapper');
+      const fileList = document.getElementById('fileList');
+
+      // Fungsi Render Tampilan Dokumen
+      function displayFile(fileObj) {
+        activeFileName.textContent = fileObj.name;
+        if (emptyPlaceholder) emptyPlaceholder.style.display = 'none';
+
+        // Dukungan Google Drive langsung (Drive ID atau URL eksternal)
+        if (fileObj.driveId) {
+          frame.style.display = 'block';
+          imageViewer.style.display = 'none';
+          downloadCard.style.display = 'none';
+          frame.src = `https://drive.google.com/file/d/${fileObj.driveId}/preview`;
+          return;
+        }
+
+        if (
+          fileObj.path &&
+          (fileObj.path.includes('drive.google.com') ||
+            fileObj.path.startsWith('http'))
+        ) {
+          frame.style.display = 'block';
+          imageViewer.style.display = 'none';
+          downloadCard.style.display = 'none';
+          frame.src = fileObj.path;
+          return;
+        }
+
+        if (fileObj.type === 'pdf') {
+          frame.style.display = 'block';
+          imageViewer.style.display = 'none';
+          downloadCard.style.display = 'none';
+          frame.src = fileObj.path;
+        } else if (fileObj.type === 'image') {
+          frame.style.display = 'none';
+          imageViewer.style.display = 'flex';
+          downloadCard.style.display = 'none';
+          docImage.src = fileObj.path;
+        } else {
+          // Mode Download Card (Office)
+          frame.style.display = 'none';
+          imageViewer.style.display = 'none';
+          downloadCard.style.display = 'flex';
+          cardTitle.textContent = fileObj.name;
+          cardDownloadBtn.href = fileObj.path;
+        }
+      }
+
+      // Inisialisasi Mode Tampilan
+      if (folderKey && FOLDER_DATA[folderKey]) {
+        const data = FOLDER_DATA[folderKey];
+        document.getElementById('docTitle').textContent = data.title;
+        document.getElementById('docSubtitle').textContent = data.subtitle;
+        document.title = data.title + ' | SSCS';
+
+        // Render Switcher List Sederhana
+        fileListWrapper.style.display = 'block';
+        fileList.innerHTML = '';
+
+        data.files.forEach((file, index) => {
+          const li = document.createElement('li');
+          const link = document.createElement('a');
+          link.href = 'javascript:void(0)';
+          link.textContent = file.name;
+          if (index === 0) {
+            link.classList.add('is-active');
+          }
+
+          link.addEventListener('click', () => {
+            fileList
+              .querySelectorAll('a')
+              .forEach((el) => el.classList.remove('is-active'));
+            link.classList.add('is-active');
+            displayFile(file);
+          });
+
+          li.appendChild(link);
+          fileList.appendChild(li);
+        });
+
+        // Tampilkan berkas pertama secara default
+        displayFile(data.files[0]);
+      } else if (directFile) {
+        // Mode Single File Langsung
+        const title = customTitle || 'Pratinjau Dokumen';
+        document.getElementById('docTitle').textContent = title;
+        const subtitle =
+          urlParams.get('subtitle') || 'Smart Stunting Care System';
+        document.getElementById('docSubtitle').textContent = subtitle;
+        document.title = title + ' | SSCS';
+
+        const ext = directFile.split('.').pop().toLowerCase();
+        let fileType = 'pdf';
+        let badge = 'PDF';
+        if (['jpg', 'jpeg', 'png', 'webp', 'gif', 'svg'].includes(ext)) {
+          fileType = 'image';
+          badge = 'Gambar';
+        } else if (['docx', 'pptx', 'xlsx', 'zip'].includes(ext)) {
+          fileType = 'download';
+          badge = ext.toUpperCase();
+        }
+
+        displayFile({
+          name: title,
+          path: directFile,
+          type: fileType,
+          badge: badge,
+        });
+      } else if (driveId) {
+        // Mode Google Drive (Fallback)
+        const title = customTitle || 'Pratinjau Google Drive';
+        document.getElementById('docTitle').textContent = title;
+        document.title = title + ' | SSCS';
+        activeFileName.textContent = title;
+
+        frame.style.display = 'block';
+        imageViewer.style.display = 'none';
+        downloadCard.style.display = 'none';
+        if (emptyPlaceholder) emptyPlaceholder.style.display = 'none';
+
+        if (type === 'folder') {
+          frame.src = `https://drive.google.com/embeddedfolderview?id=${driveId}#list`;
+        } else {
+          frame.src = `https://drive.google.com/file/d/${driveId}/preview`;
+        }
+      } else {
+        frame.style.display = 'none';
+        imageViewer.style.display = 'none';
+        downloadCard.style.display = 'none';
+        if (emptyPlaceholder) emptyPlaceholder.style.display = 'flex';
+
+        const title = customTitle || 'Pilih Dokumen';
+        const customSubtitle = urlParams.get('subtitle');
+        const customStatus = urlParams.get('status');
+        const customDesc = urlParams.get('desc');
+
+        document.getElementById('docTitle').textContent = title;
+        document.getElementById('docSubtitle').textContent =
+          customSubtitle ||
+          (customTitle
+            ? 'Smart Stunting Care System'
+            : 'Silakan kembali dan pilih dokumen yang ingin dilihat');
+        activeFileName.textContent = title;
+        document.title = title + ' | SSCS';
+
+        const emptyTitle = document.getElementById('emptyTitle');
+        if (emptyTitle) {
+          emptyTitle.textContent = customStatus || 'Belum Ada Dokumen';
+        }
+
+        const emptyDesc = document.getElementById('emptyDesc');
+        if (emptyDesc) {
+          emptyDesc.textContent =
+            customDesc ||
+            'Dokumen atau berkas untuk modul ini sedang dipersiapkan dan akan segera diperbarui.';
+        }
+      }
+    </script>
+  </body>
 </html>
